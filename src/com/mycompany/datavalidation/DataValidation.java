@@ -1,5 +1,9 @@
 package com.mycompany.datavalidation;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class DataValidation {
 
     public static boolean validateEmail(String email) {
@@ -13,8 +17,15 @@ public class DataValidation {
         return password != null && password.equals(confirmPassword) && password.length() >= 8;
     }
 
-    public static boolean validateDate(String date) {
-        // Check if the date string is not empty
-        return date != null && !date.trim().isEmpty();
+    public static boolean validateDate(String dateString) {
+        try {
+            // Check if the date is within 150 years of the current date and not after today
+            LocalDate currentDate = LocalDate.now();
+            LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ISO_LOCAL_DATE);
+            return date.isBefore(currentDate) && date.isAfter(currentDate.minusYears(150));
+        } catch (DateTimeParseException e) {
+            // Invalid date format
+            return false;
+        }
     }
 }
