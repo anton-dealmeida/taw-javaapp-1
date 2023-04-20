@@ -17,7 +17,12 @@
     <target name="compile">
         <mkdir dir="${classes.dir}" />
         <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"
-            includeantruntime="false" />
+            includeantruntime="false">
+            <classpath>
+                <path refid="classpath" />
+                <pathelement location="${lib.dir}" />
+            </classpath>
+        </javac>
     </target>
 
     <target name="jar" depends="compile">
@@ -33,6 +38,7 @@
         <java jar="${jar.dir}/${ant.project.name}.jar" fork="true">
             <classpath>
                 <path refid="classpath" />
+                <pathelement location="${lib.dir}" />
             </classpath>
         </java>
     </target>

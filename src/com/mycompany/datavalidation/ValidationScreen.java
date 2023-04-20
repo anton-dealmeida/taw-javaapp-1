@@ -1,5 +1,6 @@
 package com.mycompany.datavalidation;
 
+// import com.mycompany.datavalidation.*;
 import javax.swing.JOptionPane;
 
 public class ValidationScreen extends javax.swing.JFrame {

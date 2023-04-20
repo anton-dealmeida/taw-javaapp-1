@@ -1,3 +1,5 @@
+package com.mycompany.datavalidation;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -36,12 +38,10 @@ public class DataValidation {
         String confirmPassword = "password";
         String date = "2000-01-01";
         boolean keepSignedIn = true;
-
         // Validate email, password, confirm password, and date
         boolean isValidEmail = validateEmail(email);
         boolean isValidPassword = validatePassword(password, confirmPassword);
         boolean isValidDate = validateDate(date);
-
         // Check if all fields are valid
         if (isValidEmail && isValidPassword && isValidDate) {
             System.out.println("All fields are valid.");
