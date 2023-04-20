@@ -1,6 +1,5 @@
 package com.mycompany.datavalidation;
 
-// import com.mycompany.datavalidation.*;
 import javax.swing.JOptionPane;
 
 public class ValidationScreen extends javax.swing.JFrame {
@@ -24,7 +23,7 @@ public class ValidationScreen extends javax.swing.JFrame {
         lblErrorPassword = new javax.swing.JLabel();
         lblErrorDate = new javax.swing.JLabel();
         txtConfirmPassword = new javax.swing.JPasswordField();
-        lblPassword1 = new javax.swing.JLabel();
+        lblConfirmPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -36,7 +35,7 @@ public class ValidationScreen extends javax.swing.JFrame {
 
         lblDate.setText("Date:");
 
-        chkKeepSignedIn.setText("Keep me singed in ");
+        chkKeepSignedIn.setText("Keep me signed in ");
 
         bnConfirm.setText("Confirm");
         bnConfirm.addActionListener(new java.awt.event.ActionListener() {
@@ -45,10 +44,13 @@ public class ValidationScreen extends javax.swing.JFrame {
             }
         });
 
-        lblPassword1.setText("Confirm Password:");
+        lblConfirmPassword.setText("Confirm Password:");
 
         // Layout-related code
         // ...
+        lblErrorEmail.setForeground(java.awt.Color.RED);
+        lblErrorPassword.setForeground(java.awt.Color.RED);
+        lblErrorDate.setForeground(java.awt.Color.RED);
     }
 
     private void bnConfirmActionPerformed(java.awt.event.ActionEvent evt) {
@@ -61,6 +63,11 @@ public class ValidationScreen extends javax.swing.JFrame {
         boolean isValidEmail = DataValidation.validateEmail(email);
         boolean isValidPassword = DataValidation.validatePassword(password, confirmPassword);
         boolean isValidDate = DataValidation.validateDate(date);
+
+        // Set validation error labels
+        lblErrorEmail.setText(isValidEmail ? "" : "Invalid email.");
+        lblErrorPassword.setText(isValidPassword ? "" : "Invalid password.");
+        lblErrorDate.setText(isValidDate ? "" : "Invalid date.");
 
         if (isValidEmail && isValidPassword && isValidDate) {
             JOptionPane.showMessageDialog(this, "All fields are valid.");
@@ -101,10 +108,10 @@ public class ValidationScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblErrorPassword;
     private javax.swing.JLabel lblHeadline;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblPassword1;
+    private javax.swing.JLabel lblConfirmPassword;
     private javax.swing.JPasswordField txtConfirmPassword;
     private com.github.lgooddatepicker.components.DatePicker txtDate;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JPasswordField txtPassword;
-    // End of variables declaration
+// End of variables declaration
 }
